@@ -1,0 +1,10 @@
+SCAF_DIR=${HOME}/.scaf
+
+_scaf_completions()
+{
+    local CUR_WORD=${COMP_WORDS[COMP_CWORD]}
+    COMPREPLY=( $(compgen -d -S / -- ${SCAF_DIR}/${CUR_WORD} | sed -e 's|'${SCAF_DIR}/'||') )
+    return 0
+}
+
+complete -o nospace -F _scaf_completions scaf
